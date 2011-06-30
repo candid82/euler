@@ -8,4 +8,4 @@
 
 ;; Find the sum of all the multiples of 3 or 5 below 1000.
 
-(reduce + (for [i (range 1 1000) :when (or (zero? (mod i 3)) (zero? (mod i 5)))] i))
+(reduce + (for [i (range 1 1000) :when (or (divides? 3 i) (divides? 5 i))] i))
