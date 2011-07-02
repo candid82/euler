@@ -17,3 +17,7 @@
     (next-factor n 2)))
 
 (def unique-factors (comp distinct factors))
+
+(defn palindrome? [n]
+  (let [s (str n)]
+    (= (seq s) (reverse s))))
