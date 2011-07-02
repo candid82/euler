@@ -8,16 +8,21 @@
 (defn sqrt [n] (Math/sqrt n))
 
 (defn factors [n]
-  (let [next-factor
-        (fn [n p]
+  (let [step
+        (fn step [n p]
           (cond
            (> p (sqrt n)) (cons n nil)
-           (divides? p n) (lazy-seq (cons p (next-factor (quot n p) p)))
+           (divides? p n) (lazy-seq (cons p (step (quot n p) p)))
            :else (recur n (inc p))))]
-    (next-factor n 2)))
+    (step n 2)))
 
 (def unique-factors (comp distinct factors))
+
+(def factorize (comp frequencies factors))
 
 (defn palindrome? [n]
   (let [s (str n)]
     (= (seq s) (reverse s))))
+
+(defn int-pow [a b]
+  (reduce * (repeat b a)))
