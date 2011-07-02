@@ -24,5 +24,5 @@
   (let [s (str n)]
     (= (seq s) (reverse s))))
 
-(defn int-pow [a b]
+(defn pow [a b]
   (reduce * (repeat b a)))
