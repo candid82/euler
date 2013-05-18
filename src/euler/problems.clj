@@ -9,7 +9,7 @@
 
 ;; Find the sum of all the multiples of 3 or 5 below 1000.
 
-(reduce + (for [i (range 1 1000) :when (or (divides? 3 i) (divides? 5 i))] i))
+(sum (for [i (range 1 1000) :when (or (divides? 3 i) (divides? 5 i))] i))
 
 
 ;; Problem 2
@@ -23,7 +23,7 @@
 ;; By considering the terms in the Fibonacci sequence whose values do not exceed four million,
 ;; find the sum of the even-valued terms.
 
-(reduce + (for [i fibs :while (<= i 4000000) :when (even? i)] i))
+(sum (for [i fibs :while (<= i 4000000) :when (even? i)] i))
 
 
 ;; Problem 3
@@ -56,4 +56,21 @@
 ;; What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
 
 (reduce * (for [[k v] (apply (partial merge-with max)
-                             (for [i (range 2 21)] (factorize i)))] (pow k v)))
+                             (for [i (range 2 21)] (factorize i)))]
+                (pow k v)))
+
+
+;; Problem 6
+;; The sum of the squares of the first ten natural numbers is,
+
+;; 1^2 + 2^2 + ... + 10^2 = 385
+;; The square of the sum of the first ten natural numbers is,
+
+;; (1 + 2 + ... + 10)^2 = 55^2 = 3025
+;; Hence the difference between the sum of the squares of the first ten natural numbers
+;; and the square of the sum is 3025  385 = 2640.
+
+;; Find the difference between the sum of the squares of the first one hundred natural
+;; numbers and the square of the sum.
+
+(- (sqr (sum (range 1 101))) (sum (map sqr (range 1 101))))

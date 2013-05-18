@@ -1,5 +1,9 @@
 (ns euler.core)
 
+(def sum (partial reduce +))
+
+(defn sqr [x] (* x x))
+
 (defn divides? [d n] (zero? (mod n d)))
 
 (def fibs
