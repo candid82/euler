@@ -4,3 +4,11 @@ pom.xml
 /classes/
 .lein-deps-sum
 *~
+
+.lein-repl-history
+
+target/repl-port
+
+target/stale/dependencies
+
+target/stale/extract-native.dependencies
