@@ -30,3 +30,11 @@
 
 (defn pow [a b]
   (reduce * (repeat b a)))
+
+(defn primes
+  ([] (primes 2 []))
+  ([i found-primes]
+    (if (some #(zero? (mod i %)) found-primes)
+      (recur (inc i) found-primes)
+      (cons i (lazy-seq (primes (inc i) (conj found-primes i)))))))
+
