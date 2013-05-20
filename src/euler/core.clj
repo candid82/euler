@@ -34,7 +34,7 @@
 (defn primes
   ([] (primes 2 []))
   ([i found-primes]
-    (if (some #(zero? (mod i %)) found-primes)
+    (if (some #(zero? (rem i %)) (take-while #(<= (* % %) i) found-primes))
       (recur (inc i) found-primes)
       (cons i (lazy-seq (primes (inc i) (conj found-primes i)))))))
 
