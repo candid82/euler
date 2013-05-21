@@ -2,6 +2,8 @@
 
 (def sum (partial reduce +))
 
+(def mul (partial reduce *))
+
 (defn sqr [x] (* x x))
 
 (defn divides? [d n] (zero? (mod n d)))

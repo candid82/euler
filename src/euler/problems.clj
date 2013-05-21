@@ -128,7 +128,8 @@
 05886116467109405077541002256983155200055935729725
 71636269561882670428252483600823257530420752963450" "\n" "")
       to-digit (fn [c] (- (int c) 48))
-      numbers (into [] (map to-digit input))
-      products (for [i (range 995)] (reduce * (subvec numbers i (+ i 5))))]
+      numbers (map to-digit input)
+      groups (partition 5 1 numbers)
+      products (map mul groups)]
   (reduce max products))
 
