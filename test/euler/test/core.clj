@@ -10,4 +10,5 @@
   (is (= (problem-5) 232792560))
   (is (= (problem-6) 25164150))
   (is (= (problem-7) 104743))
-  (is (= (problem-8) 40824)))
+  (is (= (problem-8) 40824))
+  (is (= (problem-9) 31875000)))

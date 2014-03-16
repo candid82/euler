@@ -6,6 +6,7 @@ pom.xml
 *~
 
 .lein-repl-history
+.lein-failures
 
 target/repl-port
 
