@@ -9,7 +9,8 @@
 
 ;; Find the sum of all the multiples of 3 or 5 below 1000.
 
-(sum (for [i (range 1 1000) :when (or (divides? 3 i) (divides? 5 i))] i))
+(defn problem-1 []
+  (sum (for [i (range 1 1000) :when (or (divides? 3 i) (divides? 5 i))] i)))
 
 
 ;; Problem 2
@@ -23,7 +24,8 @@
 ;; By considering the terms in the Fibonacci sequence whose values do not exceed four million,
 ;; find the sum of the even-valued terms.
 
-(sum (for [i fibs :while (<= i 4000000) :when (even? i)] i))
+(defn problem-2 []
+  (sum (for [i fibs :while (<= i 4000000) :when (even? i)] i)))
 
 
 ;; Problem 3
@@ -33,7 +35,8 @@
 
 ;; What is the largest prime factor of the number 600851475143 ?
 
-(last (factors 600851475143))
+(defn problem-3 []
+  (last (factors 600851475143)))
 
 
 ;; Problem 4
@@ -44,8 +47,9 @@
 
 ;; Find the largest palindrome made from the product of two 3-digit numbers.
 
-(let [r (range 100 1000)]
-  (reduce max (for [i r j r :let [p (* i j)] :when (palindrome? p)] p)))
+(defn problem-4 []
+  (let [r (range 100 1000)]
+    (reduce max (for [i r j r :let [p (* i j)] :when (palindrome? p)] p))))
 
 
 ;; Problem 5
@@ -55,9 +59,10 @@
 
 ;; What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
 
-(reduce * (for [[k v] (apply (partial merge-with max)
-                             (for [i (range 2 21)] (factorize i)))]
-                (pow k v)))
+(defn problem-5 []
+  (reduce * (for [[k v] (apply (partial merge-with max)
+                               (for [i (range 2 21)] (factorize i)))]
+                  (pow k v))))
 
 
 ;; Problem 6
@@ -73,7 +78,8 @@
 ;; Find the difference between the sum of the squares of the first one hundred natural
 ;; numbers and the square of the sum.
 
-(- (sqr (sum (range 1 101))) (sum (map sqr (range 1 101))))
+(defn problem-6 []
+  (- (sqr (sum (range 1 101))) (sum (map sqr (range 1 101)))))
 
 
 ;; Problem 7
@@ -81,7 +87,8 @@
 
 ;; What is the 10 001st prime number?
 
-(last (take 10001 (primes)))
+(defn problem-7 []
+  (last (take 10001 (primes))))
 
 ;; Problem 8
 ;; Find the greatest product of five consecutive digits in the 1000-digit number.
@@ -107,7 +114,8 @@
 ;; 05886116467109405077541002256983155200055935729725
 ;; 71636269561882670428252483600823257530420752963450
 
-(let [input (.replace "73167176531330624919225119674426574742355349194934
+(defn problem-8 []
+  (let [input (.replace "73167176531330624919225119674426574742355349194934
 96983520312774506326239578318016984801869478851843
 85861560789112949495459501737958331952853208805511
 12540698747158523863050715693290963295227443043557
@@ -127,9 +135,8 @@
 84580156166097919133875499200524063689912560717606
 05886116467109405077541002256983155200055935729725
 71636269561882670428252483600823257530420752963450" "\n" "")
-      to-digit (fn [c] (- (int c) 48))
-      numbers (map to-digit input)
-      groups (partition 5 1 numbers)
-      products (map mul groups)]
-  (reduce max products))
-
+        to-digit (fn [c] (- (int c) 48))
+        numbers (map to-digit input)
+        groups (partition 5 1 numbers)
+        products (map mul groups)]
+    (reduce max products)))
