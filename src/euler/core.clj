@@ -1,17 +1,24 @@
 (ns euler.core)
 
+(defn sqrt [n] (Math/sqrt n))
+
+(defn sqr [x] (* x x))
+
 (def sum (partial reduce +))
 
 (def mul (partial reduce *))
 
-(defn sqr [x] (* x x))
-
 (defn divides? [d n] (zero? (mod n d)))
+
+(defn divisors [n]
+  (let [limit (int (sqrt n))]
+    (flatten (for [i (range 1 (inc limit))
+                   :when (divides? i n)
+                   :let [j (/ n i)]]
+               (if (= i j) [i] [i j])))))
 
 (def fibs
   (lazy-cat [0 1] (map + (rest fibs) fibs)))
-
-(defn sqrt [n] (Math/sqrt n))
 
 (defn factors [n]
   (let [step
@@ -40,3 +47,9 @@
       (recur (inc i) found-primes)
       (cons i (lazy-seq (primes (inc i) (conj found-primes i)))))))
 
+(def natural-numbers (iterate inc 1))
+
+(def triangle-numbers
+  (lazy-cat [1] (map + triangle-numbers (rest natural-numbers))))
+
+(defn find-first [pred coll] (first (drop-while (complement pred) coll)))
