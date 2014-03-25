@@ -8,6 +8,14 @@
 
 (def mul (partial reduce *))
 
+(defn max-by [f coll]
+  (let [m (reduce (fn [[max-value max-item] item]
+                    (let [value (f item)]
+                      (if (> value max-value) [value item] [max-value max-item])))
+                  [(f (first coll)) (first coll)]
+                  coll)]
+    (second m)))
+
 (defn divides? [d n] (zero? (mod n d)))
 
 (defn divisors [n]
